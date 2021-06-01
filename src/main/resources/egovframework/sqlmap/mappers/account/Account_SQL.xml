@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.bil.common.service.impl.CommonDAO">
+
+	<resultMap id="commonVO" type="com.bil.account.service.AccountVO">
+		<result property="profit_cost" column="PROFIT_COST"/>
+		<result property="big_group" column="BIG_GROUP"/>
+		<result property="middle_group" column="MIDDLE_GROUP"/>
+		<result property="small_group" column="SMALL_GROUP"/>
+		<result property="detail_group" column="DETAIL_GROUP"/>
+		<result property="comments" column="COMMENTS"/>
+		<result property="transaction_money" column="TRANSACTION_MONEY"/>
+		<result property="writer" column="WRITER"/>
+	</resultMap> 
+	
+	<insert id="accountInsert">
+	INSERT INTO ACCOUNT_TB (ACCOUNT_SEQ, PROFIT_COST, BIG_GROUP, MIDDLE_GROUP,
+	SMALL_GROUP, DETAIL_GROUP, COMMENTS, TRANSACTION_MONEY, TRANSACTION_DATE,
+	WRITER, REG_DATE) VALUES(ACCOUNT_SEQ.NEXTVAL , #{profit_cost,jdbcType=VARCHAR}, #{big_group,jdbcType=VARCHAR},
+	#{middle_group,jdbcType=VARCHAR},#{small_group,jdbcType=VARCHAR},#{detail_group,jdbcType=VARCHAR},#{comments,jdbcType=VARCHAR},
+	#{transaction_money,jdbcType=INTEGER},SYSDATE,'zinkki', SYSDATE)
+	</insert>
+</mapper>

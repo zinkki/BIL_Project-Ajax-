@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bil.user.service.impl.UserMapper">
+<!-- <mapper namespace="User"> -->
+
+	 <resultMap id="userVO" type="com.bil.user.vo.UserVO">
+		<result property="userSeq" column="User_seq"/>
+		<result property="userId" column="user_id"/>
+		<result property="pwd" column="pwd"/>
+		<result property="userName" column="user_name"/>
+		<result property="regDt" column="reg_dt"/>
+	</resultMap> 
+	
+	<insert id="userInsert" parameterType="com.bil.user.vo.UserVO">
+		INSERT INTO USER_TB (USER_SEQ, USER_ID, PWD, USER_NAME, REG_DT)
+		VALUES(USER_SEQ.NEXTVAL, #{userId}, #{pwd}, #{userName}, SYSDATE)
+	</insert>
+	
+	<select id="idCheck" resultType="int">
+		<![CDATA[
+		SELECT COUNT(*) FROM USER_TB WHERE USER_ID = #{userId}
+		]]>
+	</select>
+	
+	<select id="userLogin" resultType="int">
+		<![CDATA[
+		SELECT COUNT(*) FROM USER_TB
+		WHERE USER_ID = #{userId,jdbcType=VARCHAR} and PWD = #{pwd,jdbcType=VARCHAR}
+		]]>
+	</select>
+	
+
+</mapper>
